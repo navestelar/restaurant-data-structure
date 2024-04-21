@@ -77,6 +77,7 @@ public class ClientController {
     }
   }
 
+
   private void updateClient() {
     Client newClient = new Client();
 
