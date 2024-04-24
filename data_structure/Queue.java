@@ -61,4 +61,11 @@ public class Queue<T> {
     return head;
   }
 
+  public int getSize() {
+    return size;
+  }
+
+  public void setSize(int size) {
+    this.size = size;
+  }
 }

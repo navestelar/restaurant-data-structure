@@ -5,20 +5,19 @@ public class DoublyLinkedList<T> {
   private Node<T> tail = null;
   private Integer size = 0;
 
-  // add back
   public void add(T value) {
     Node<T> temp = new Node<T>(value, null, tail);
 
     if (tail != null) {
       tail.setNext(temp);
     }
-
+    
     tail = temp;
-
+    
     if (head == null) {
       head = temp;
     }
-
+    
     size++;
   }
 
@@ -31,6 +30,20 @@ public class DoublyLinkedList<T> {
 
       temp = temp.getNext();
     }
+  }
+
+  public String toString() {
+    Node<T> temp = head;
+    String result = "";
+
+    while (temp != null) {
+      if (temp.getData() != null)
+        result += temp.getData().toString() + "\n";
+
+      temp = temp.getNext();
+    }
+
+    return result;
   }
 
   public T remove(T data) {
@@ -78,7 +91,7 @@ public class DoublyLinkedList<T> {
   public Integer indexOf(T data) {
     Integer index = 0;
     Node<T> temp = head;
-
+    
     while (temp != null) {
       if (temp.getData().equals(data)) {
         return index;
@@ -95,6 +108,20 @@ public class DoublyLinkedList<T> {
     
     while (temp != null) {
       if (temp.getData().toString().equals(data.toString())) {
+        return true;
+      }
+      temp = temp.getNext();
+    }
+
+    return false;
+  }
+
+  public boolean update(T data, T newData) {
+    Node<T> temp = head;
+
+    while (temp != null) {
+      if (temp.getData().equals(data)) {
+        temp.setData(newData);
         return true;
       }
       temp = temp.getNext();
