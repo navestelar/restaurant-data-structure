@@ -1,17 +1,14 @@
 package controller;
 
-import data_structure.DoublyLinkedList;
-import model.BO.ClientBO;
-import model.DTO.Client;
+import data_structure.HashMapLinked;
+import model.Client;
 import view.ClientView;
 
 public class ClientController {
-  private ClientView view;
-  private ClientBO clientBO;
+  private ClientView view = new ClientView();
+  private HashMapLinked<String, Client> clientList = new HashMapLinked<String, Client>();
 
   public ClientController() {
-    this.view = new ClientView();
-    this.clientBO = new ClientBO();
   }
 
   public void start() {
@@ -50,14 +47,13 @@ public class ClientController {
   private void registerClient() {
     Client client = new Client();
     client.setName(view.readName());
-    client.setAge(view.readAge());
-    client.setEmail(view.readEmail());
     client.setPhone(view.readPhone());
+    client.setEmail(view.readEmail());
 
-    if (clientBO.registerClient(client)) {
-      view.showMessage("Client registered successfully!");
+    if (clientList.put(client.getCpf(), client)) {
+      System.out.println("Client registered successfully!");
     } else {
-      view.showMessage("This client is already registered, please try again!");
+      System.out.println("Client already exists!");
     }
   }
 
@@ -66,47 +62,54 @@ public class ClientController {
     Integer id = view.readId();
 
     view.showMessage("Remove client: ");
-    if (showClient(id)) {
+    Client client = showClient(id);
+    if (client != null) {
       boolean canExclude = view.readConfirmation();
   
       if (canExclude) {
-        if (clientBO.removeClient(id) != null) {
-          view.showMessage("Client removed successfully!");
-        }
+        clientList.remove(client.getCpf());
       }
     }
   }
 
 
   private void updateClient() {
-    Client newClient = new Client();
-
     listClients();
     Integer id = view.readId();
 
     view.showMessage("Update client: ");
-    if (showClient(id)) {
-      newClient.setId(id);
-      newClient.setName(view.readName());
-      newClient.setAge(view.readAge());
-      newClient.setEmail(view.readEmail());
-      newClient.setPhone(view.readPhone());
-  
-      if (clientBO.updateClient(newClient) != null) {
-        view.showMessage("Client updated successfully!");
-        showClient(id);
-      } else {
-        view.showMessage("Something went wrong, please try again!");
+    Client client = showClient(id);
+
+    Integer option;
+    do {
+      view.showMenuUpdate();
+      option = Integer.parseInt(System.console().readLine());
+
+      switch (option) {
+        case 1:
+          client.setName(view.readName());
+          break;
+        case 2:
+          client.setPhone(view.readPhone());
+          break;
+        case 3:
+          client.setEmail(view.readEmail());
+          break;
+        case 0:
+          view.showMessage("Updating client...");
+          break;
+        default:
+          view.showMessage("Invalid option!");
+          break;
       }
-    }
+    } while (option != 0);
+
+    view.showMessage("Client updated successfully! ");
+    showClient(id);
   }
 
   private void listClients() {
-    DoublyLinkedList<Client> clients = clientBO.readClientList();
-
-    for (int i = 0; i < clients.size(); i++) {
-      view.showMessage(clients.get(i).getId() + ": " + clients.get(i).toString());
-    }
+    clientList.showList();
   }
 
   private void searchClient() {
@@ -115,15 +118,15 @@ public class ClientController {
     showClient(id);
   }
 
-  private boolean showClient(Integer id) {
-    Client client = clientBO.readClient(id);
+  private Client showClient(Integer id) {
+    Client client = clientList.getByIndex(id);
 
     if (client != null) {
-      view.showMessage(client.getId() + ": " + client.toString());
-      return true;
+      view.showMessage("Id: " + id + ", Cliente: " + client.toString());
+      return client;
     }
     
     view.showMessage("Client not found!");
-    return false;
+    return null;
   }
 }

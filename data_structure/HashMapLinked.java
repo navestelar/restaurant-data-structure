@@ -24,8 +24,13 @@ public class HashMapLinked<K, T> {
     return valueList.get(keyList.indexOf(key));
   }
 
+  public T getByIndex(Integer index) {
+    return valueList.get(index);
+  }
+
   public T remove(K key) {
-    if (!keyList.contains(key)) return null;
+    if (!keyList.contains(key))
+      return null;
     T value = valueList.get(keyList.indexOf(key));
     keyList.remove(key);
     valueList.remove(value);
@@ -33,10 +38,30 @@ public class HashMapLinked<K, T> {
     return value;
   }
 
+  public boolean update(K key, K newKey, T newData) {
+    if (!keyList.contains(key))
+      return false;
+
+    valueList.update(valueList.get(keyList.indexOf(key)), newData);
+    keyList.update(key, newKey);
+
+    return true;
+  }
+
   public void showList() {
     for (Integer i = 0; i < size; i++) {
       System.out.println("Key: " + keyList.get(i) + ", value: " + valueList.get(i));
     }
+  }
+
+  public String toString() {
+    String result = "";
+
+    for (Integer i = 0; i < size; i++) {
+      result += "Key: " + keyList.get(i) + ", value: " + valueList.get(i) + "\n";
+    }
+
+    return result;
   }
 
   public boolean containsKey(K key) {

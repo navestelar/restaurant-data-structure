@@ -11,7 +11,18 @@ public class ClientView {
     System.out.println("5 - List Clients");
     System.out.println("0 - Exit");
     System.out.println("------------------------");
-    System.out.print("Digite a opção: ");
+    System.out.print("Enter an option: ");
+  }
+
+  public void showMenuUpdate() {
+    System.out.println("What informations do you want to update?");
+    System.out.println("------------------------");
+    System.out.println("1 - Name");
+    System.out.println("2 - Phone");
+    System.out.println("3 - Email");
+    System.out.println("0 - Update Client");
+    System.out.println("------------------------");
+    System.out.print("Choose the information: ");
   }
 
   public String readName() {
@@ -27,11 +38,6 @@ public class ClientView {
   public String readEmail() {
     System.out.print("Email: ");
     return System.console().readLine();
-  }
-
-  public Integer readAge() {
-    System.out.print("Age: ");
-    return Integer.parseInt(System.console().readLine());
   }
 
   public Integer readId() {

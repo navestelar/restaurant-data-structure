@@ -5,7 +5,6 @@ public class DoublyLinkedList<T> {
   private Node<T> tail = null;
   private Integer size = 0;
 
-  // add back
   public void add(T value) {
     Node<T> temp = new Node<T>(value, null, tail);
 
@@ -31,6 +30,20 @@ public class DoublyLinkedList<T> {
 
       temp = temp.getNext();
     }
+  }
+
+  public String toString() {
+    Node<T> temp = head;
+    String result = "";
+
+    while (temp != null) {
+      if (temp.getData() != null)
+        result += temp.getData().toString() + "\n";
+
+      temp = temp.getNext();
+    }
+
+    return result;
   }
 
   public T remove(T data) {
@@ -92,9 +105,23 @@ public class DoublyLinkedList<T> {
 
   public boolean contains(T data) {
     Node<T> temp = head;
-    
+
     while (temp != null) {
-      if (temp.getData().toString().equals(data.toString())) {
+      if (temp.getData().equals(data)) {
+        return true;
+      }
+      temp = temp.getNext();
+    }
+
+    return false;
+  }
+
+  public boolean update(T data, T newData) {
+    Node<T> temp = head;
+
+    while (temp != null) {
+      if (temp.getData().equals(data)) {
+        temp.setData(newData);
         return true;
       }
       temp = temp.getNext();
