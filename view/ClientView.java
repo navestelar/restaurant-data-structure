@@ -25,6 +25,16 @@ public class ClientView {
     System.out.print("Choose the information: ");
   }
 
+  public String readSearchString() {
+    System.out.print("Search client: ");
+    return System.console().readLine();
+  }
+
+  public String readCpf() {
+    System.out.print("Cpf: ");
+    return System.console().readLine();
+  }
+
   public String readName() {
     System.out.print("Name: ");
     return System.console().readLine();

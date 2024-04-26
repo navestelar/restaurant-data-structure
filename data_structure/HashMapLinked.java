@@ -49,9 +49,7 @@ public class HashMapLinked<K, T> {
   }
 
   public void showList() {
-    for (Integer i = 0; i < size; i++) {
-      System.out.println("Key: " + keyList.get(i) + ", value: " + valueList.get(i));
-    }
+    valueList.showList();
   }
 
   public String toString() {
@@ -62,6 +60,17 @@ public class HashMapLinked<K, T> {
     }
 
     return result;
+  }
+
+  public HashMapLinked<K, T> searchString(String value) {
+    HashMapLinked<K, T> resultList = new HashMapLinked<K, T>();
+    DoublyLinkedList<T> valuesMatch = valueList.searchString(value);
+
+    for (Integer i = 0; i < valuesMatch.size(); i++) {
+      resultList.put(keyList.get(valueList.indexOf(valuesMatch.get(i))), valuesMatch.get(i));
+    }
+    
+    return resultList;
   }
 
   public boolean containsKey(K key) {

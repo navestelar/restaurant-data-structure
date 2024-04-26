@@ -7,6 +7,7 @@ import view.ClientView;
 public class ClientController {
   private ClientView view = new ClientView();
   private HashMapLinked<String, Client> clientList = new HashMapLinked<String, Client>();
+  private Integer currentId = 0;
 
   public ClientController() {
   }
@@ -45,23 +46,28 @@ public class ClientController {
   }
 
   private void registerClient() {
+    view.showMessage("Register Client: ");
     Client client = new Client();
+    client.setId(currentId);
+    client.setCpf(view.readCpf());
     client.setName(view.readName());
     client.setPhone(view.readPhone());
     client.setEmail(view.readEmail());
 
     if (clientList.put(client.getCpf(), client)) {
       System.out.println("Client registered successfully!");
+      currentId++;
     } else {
-      System.out.println("Client already exists!");
+      System.out.println("Already exists a client with this cpf!");
     }
   }
 
   private void removeClient() {
+    view.showMessage("Remove Client: ");
     listClients();
     Integer id = view.readId();
 
-    view.showMessage("Remove client: ");
+    view.showMessage("Client to remove: ");
     Client client = showClient(id);
     if (client != null) {
       boolean canExclude = view.readConfirmation();
@@ -74,10 +80,11 @@ public class ClientController {
 
 
   private void updateClient() {
+    view.showMessage("Update Client: ");
     listClients();
     Integer id = view.readId();
 
-    view.showMessage("Update client: ");
+    view.showMessage("Client to update: ");
     Client client = showClient(id);
 
     Integer option;
@@ -113,16 +120,23 @@ public class ClientController {
   }
 
   private void searchClient() {
-    listClients();
-    Integer id = view.readId();
-    showClient(id);
+    String value = view.readSearchString();
+
+    HashMapLinked<String, Client> searchClients = clientList.searchString(value);
+
+    if (searchClients.size() > 0) {
+      System.out.println(searchClients.toString());
+    } else {
+      view.showMessage("Client not found!");
+    }
   }
 
   private Client showClient(Integer id) {
-    Client client = clientList.getByIndex(id);
+    HashMapLinked<String, Client> clients = clientList.searchString("Client [id="+ id);
+    Client client = clients.getByIndex(0);
 
     if (client != null) {
-      view.showMessage("Id: " + id + ", Cliente: " + client.toString());
+      view.showMessage(client.toString());
       return client;
     }
     

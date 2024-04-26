@@ -23,12 +23,27 @@ public class DoublyLinkedList<T> {
 
   public void showList() {
     Node<T> temp = head;
+    Integer index = 0;
 
     while (temp != null) {
       if (temp.getData() != null)
         System.out.println(temp.getData().toString());
 
       temp = temp.getNext();
+      index++;
+    }
+  }
+
+  public void showListIndex() {
+    Node<T> temp = head;
+    Integer index = 0;
+
+    while (temp != null) {
+      if (temp.getData() != null)
+        System.out.println("Index: " + index + ", " + temp.getData().toString());
+
+      temp = temp.getNext();
+      index++;
     }
   }
 
@@ -114,6 +129,20 @@ public class DoublyLinkedList<T> {
     }
 
     return false;
+  }
+
+  public DoublyLinkedList<T> searchString(String value) {
+    DoublyLinkedList<T> result = new DoublyLinkedList<T>();
+    Node<T> temp = head;
+
+    while (temp != null) {
+      if (temp.getData().toString().contains(value)) {
+        result.add(temp.getData());
+      }
+      temp = temp.getNext();
+    }
+
+    return result;
   }
 
   public boolean update(T data, T newData) {

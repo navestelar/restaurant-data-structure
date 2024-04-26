@@ -1,6 +1,7 @@
 package model;
 
 public class Client {
+  private Integer id;
   private String cpf;
   private String name;
   private String phone;
@@ -9,6 +10,14 @@ public class Client {
   private Integer peopleQuantity;
 
   public Client() {
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
   }
   public String getName() {
     return name;
@@ -46,9 +55,10 @@ public class Client {
   public void setCpf(String cpf) {
     this.cpf = cpf;
   }
+
   @Override
   public String toString() {
-    return "Client [cpf=" + cpf + ", name=" + name + ", phone=" + phone + ", email=" + email + ", table=" + table
-        + ", peopleQuantity=" + peopleQuantity + "]";
+    return "Client [id=" + id + ", cpf=" + cpf + ", name=" + name + ", phone=" + phone + ", email=" + email + ", table="
+        + table + ", peopleQuantity=" + peopleQuantity + "]";
   }
 }

@@ -26,6 +26,6 @@ public class Table {
   }
   @Override
   public String toString() {
-    return "Table [number=" + number + ", capacity=" + capacity + ", client=" + client + "]";
+    return "Table [number=" + number + ", capacity=" + capacity + ", client=" + client.toString() + "]";
   }
 }
