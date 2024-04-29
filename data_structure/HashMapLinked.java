@@ -56,6 +56,16 @@ public class HashMapLinked<K, T> {
     String result = "";
 
     for (Integer i = 0; i < size; i++) {
+      result += valueList.get(i).toString() + "\n";
+    }
+
+    return result;
+  }
+
+  public String toStringWithKey() {
+    String result = "";
+
+    for (Integer i = 0; i < size; i++) {
       result += "Key: " + keyList.get(i) + ", value: " + valueList.get(i) + "\n";
     }
 

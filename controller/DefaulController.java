@@ -5,10 +5,16 @@ import view.DefaultView;
 public class DefaulController {
   private DefaultView view;
   private ClientController clientController;
+  private TableController tableController;
+  private OrderController orderController;
+  private EmployeeController employeeController;
 
   public DefaulController() {
     this.view = new DefaultView();
     this.clientController = new ClientController();
+    this.tableController = new TableController();
+    this.employeeController = new EmployeeController();
+    this.orderController = new OrderController(tableController, employeeController);
   }
 
   public void start() {
@@ -21,6 +27,9 @@ public class DefaulController {
       switch (option) {
         case 1:
           clientController.start();
+          break;
+        case 2:
+          orderController.start();
           break;
         case 0:
           System.exit(0);

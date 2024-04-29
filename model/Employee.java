@@ -9,8 +9,9 @@ public class Employee {
   private EmployeeRoles role;
   private ScaleOfWork scaleOfWork;
 
-  public Employee(String cpf, String name, String phone, String email, EmployeeRoles role,
+  public Employee(Integer id, String cpf, String name, String phone, String email, EmployeeRoles role,
       String arrivalTime, String breakTime, String departureTime) {
+    this.id = id;
     this.cpf = cpf;
     this.name = name;
     this.phone = phone;
@@ -56,15 +57,15 @@ public class Employee {
   public void setScaleOfWork(ScaleOfWork scaleOfWork) {
     this.scaleOfWork = scaleOfWork;
   }
-  @Override
-  public String toString() {
-    return "Employee [cpf=" + cpf + ", name=" + name + ", phone=" + phone + ", email=" + email + ", role=" + role
-        + ", scaleOfWork=" + scaleOfWork + "]";
-  }
   public Integer getId() {
     return id;
   }
   public void setId(Integer id) {
     this.id = id;
+  }
+  @Override
+  public String toString() {
+    return "Employee [id=" + id + ", cpf=" + cpf + ", name=" + name + ", phone=" + phone + ", email=" + email
+        + ", role=" + role + ", scaleOfWork=" + scaleOfWork.toString() + "]";
   }
 }

@@ -125,7 +125,7 @@ public class ClientController {
     HashMapLinked<String, Client> searchClients = clientList.searchString(value);
 
     if (searchClients.size() > 0) {
-      System.out.println(searchClients.toString());
+      System.out.println(searchClients.toStringWithKey());
     } else {
       view.showMessage("Client not found!");
     }

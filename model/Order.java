@@ -49,7 +49,30 @@ public class Order {
   }
   @Override
   public String toString() {
-    return "Order [id=" + id + ", table=" + table.toString() + ", employee=" + employee.getName() + ", OrderStatus=" + OrderStatus
-        + ", orderItem=" + orderItem.toString() + ", totalPrice=" + totalPrice + "]";
+    String result = "Order [id=" + id; 
+    
+    if (table != null) {
+      result += ", table= " + table.toString();
+    } else {
+      result += ", table= " + table;
+    }
+
+    if (employee != null) {
+      result += ", employee=  " + employee.getName();      
+    } else {
+      result += ", employee= " + employee;
+    }
+
+    result += ", OrderStatus= " + OrderStatus;
+
+    if (orderItem != null) {
+      result += ", orderItem= " + orderItem.toString();
+    } else {
+      result += ", orderItem= " + orderItem;
+    }
+
+    result += ", totalPrice= " + totalPrice + "]";
+
+    return result;
   } 
 }

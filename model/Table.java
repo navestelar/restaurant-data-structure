@@ -4,6 +4,10 @@ public class Table {
   private Integer number;
   private Integer capacity;
   private Client client;
+  public Table(Integer number, Integer capacity) {
+    this.number = number;
+    this.capacity = capacity;
+  }
   public Table() {
   }
   public Integer getNumber() {
@@ -26,6 +30,14 @@ public class Table {
   }
   @Override
   public String toString() {
-    return "Table [number=" + number + ", capacity=" + capacity + ", client=" + client.toString() + "]";
+    String result = "Table [number=" + number + ", capacity=" + capacity + ", client=";
+
+    if (client != null) {
+      result += client.toString() + "]";
+    } else {
+      result += client + "]";
+    }
+
+    return result;
   }
 }
