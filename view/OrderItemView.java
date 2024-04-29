@@ -34,6 +34,12 @@ public class OrderItemView {
     return System.console().readLine();
   }
 
+  public boolean readConfirmation() {
+    System.out.print("Are you sure?(Y/N): ");
+    String resposta = System.console().readLine().toUpperCase();
+    return resposta.equals("Y");
+  }
+
   public void showMessage(String message) {
     System.out.println(message);
   }

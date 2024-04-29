@@ -18,6 +18,7 @@ public class OrderView {
     System.out.println("What informations do you want to update?");
     System.out.println("------------------------");
     System.out.println("1 - Table");
+    System.out.println("2 - Employee");
     System.out.println("2 - Order Items");
     System.out.println("0 - Update Order");
     System.out.println("------------------------");
@@ -48,6 +49,11 @@ public class OrderView {
     System.out.print("Are you sure?(Y/N): ");
     String resposta = System.console().readLine().toUpperCase();
     return resposta.equals("Y");
+  }
+
+  public String readSearchString() {
+    System.out.print("Search order: ");
+    return System.console().readLine();
   }
 
   public void showMessage(String message) {
