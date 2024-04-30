@@ -10,6 +10,15 @@ public class Table {
   }
   public Table() {
   }
+
+  public boolean canOccupate(Integer peopleQuantity) {
+    return client == null && peopleQuantity <= capacity;
+  }
+
+  public boolean isOccupied() {
+    return client != null;
+  }
+
   public Integer getNumber() {
     return number;
   }
@@ -30,13 +39,15 @@ public class Table {
   }
   @Override
   public String toString() {
-    String result = "Table [number=" + number + ", capacity=" + capacity + ", client=";
+    String result = "Table [number=" + number + ", capacity=" + capacity;
 
     if (client != null) {
-      result += client.toString() + "]";
+      result += ", " + client;
     } else {
-      result += client + "]";
+      result += ", client= " + client;
     }
+
+    result += ", isOccupied=" + isOccupied() + "]";
 
     return result;
   }

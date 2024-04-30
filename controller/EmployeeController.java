@@ -23,8 +23,6 @@ public class EmployeeController {
     currentId = 11;
   }
 
-  
-
   public Employee getEmployeeById(Integer id) {
     HashMapLinked<String, Employee> employees = employeeList.searchString("Employee [id=" + id);
     Employee employee = employees.getByIndex(0);

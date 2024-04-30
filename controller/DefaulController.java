@@ -12,7 +12,7 @@ public class DefaulController {
   public DefaulController() {
     this.view = new DefaultView();
     this.clientController = new ClientController();
-    this.tableController = new TableController();
+    this.tableController = new TableController(clientController);
     this.employeeController = new EmployeeController();
     this.orderController = new OrderController(tableController, employeeController);
   }
@@ -30,6 +30,9 @@ public class DefaulController {
           break;
         case 2:
           orderController.start();
+          break;
+        case 3:
+          tableController.start();
           break;
         case 0:
           System.exit(0);

@@ -115,7 +115,7 @@ public class ClientController {
     showClient(id);
   }
 
-  private void listClients() {
+  public void listClients() {
     clientList.showList();
   }
 
@@ -131,7 +131,23 @@ public class ClientController {
     }
   }
 
-  private Client showClient(Integer id) {
+  public Client setPeopleQuantity() {
+    view.showMessage("Set People Quantity: ");
+    listClients();
+    Integer id = view.readId();
+    Client client = showClient(id);
+    
+    if (client != null) {
+      client.setPeopleQuantity(view.readPeopleQuantity());
+      view.showMessage("People quantity updated!");
+      return client;
+    }
+
+    view.showMessage("Client not found!");
+    return null;
+  }
+
+  public Client showClient(Integer id) {
     HashMapLinked<String, Client> clients = clientList.searchString("Client [id="+ id);
     Client client = clients.getByIndex(0);
 

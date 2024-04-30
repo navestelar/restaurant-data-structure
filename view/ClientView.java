@@ -55,6 +55,11 @@ public class ClientView {
     return Integer.parseInt(System.console().readLine());
   }
 
+  public Integer readPeopleQuantity() {
+    System.out.print("People quantity: ");
+    return Integer.parseInt(System.console().readLine());
+  }
+
   public boolean readConfirmation() {
     System.out.print("Are you sure?(Y/N): ");
     String resposta = System.console().readLine().toUpperCase();

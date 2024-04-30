@@ -52,13 +52,13 @@ public class Order {
     String result = "Order [id=" + id; 
     
     if (table != null) {
-      result += ", table= " + table.toString();
+      result += ", table= " + table.getNumber();
     } else {
       result += ", table= " + table;
     }
 
     if (employee != null) {
-      result += ", employee=  " + employee.getName();      
+      result += ", employee= " + employee.getName();      
     } else {
       result += ", employee= " + employee;
     }
@@ -66,7 +66,7 @@ public class Order {
     result += ", OrderStatus= " + OrderStatus;
 
     if (orderItem != null) {
-      result += ", orderItem= " + orderItem.toString();
+      result += orderItem.toString();
     } else {
       result += ", orderItem= " + orderItem;
     }
