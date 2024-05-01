@@ -13,11 +13,22 @@ public class ClientController {
   }
 
   public void start() {
-    Integer option;
+    Integer option = null;
 
     do {
       view.showMenu();
-      option = Integer.parseInt(System.console().readLine());
+      Boolean isOptionInvalid = false;
+
+      do {
+        try {
+          System.out.print("Option: ");
+          option = Integer.parseInt(System.console().readLine());
+          isOptionInvalid = false;
+        } catch (NumberFormatException ex) {
+          System.out.println("Not a number, try again");
+          isOptionInvalid = true;
+        }
+      } while (isOptionInvalid);
 
       switch (option) {
         case 1:
@@ -71,13 +82,12 @@ public class ClientController {
     Client client = showClient(id);
     if (client != null) {
       boolean canExclude = view.readConfirmation();
-  
+
       if (canExclude) {
         clientList.remove(client.getCpf());
       }
     }
   }
-
 
   private void updateClient() {
     view.showMessage("Update Client: ");
@@ -136,7 +146,7 @@ public class ClientController {
     listClients();
     Integer id = view.readId();
     Client client = showClient(id);
-    
+
     if (client != null) {
       client.setPeopleQuantity(view.readPeopleQuantity());
       view.showMessage("People quantity updated!");
@@ -148,14 +158,14 @@ public class ClientController {
   }
 
   public Client showClient(Integer id) {
-    HashMapLinked<String, Client> clients = clientList.searchString("Client [id="+ id);
+    HashMapLinked<String, Client> clients = clientList.searchString("Client [id=" + id);
     Client client = clients.getByIndex(0);
 
     if (client != null) {
       view.showMessage(client.toString());
       return client;
     }
-    
+
     view.showMessage("Client not found!");
     return null;
   }

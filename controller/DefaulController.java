@@ -18,11 +18,22 @@ public class DefaulController {
   }
 
   public void start() {
-    Integer option;
+    Integer option = null;
 
     do {
       view.showMenu();
-      option = Integer.parseInt(System.console().readLine());
+      Boolean isOptionInvalid = false;
+
+      do {
+        try {
+          System.out.print("Option: ");
+          option = Integer.parseInt(System.console().readLine());
+          isOptionInvalid = false;
+        } catch (NumberFormatException ex) {
+          System.out.println("Not a number, try again");
+          isOptionInvalid = true;
+        }
+      } while (isOptionInvalid);
 
       switch (option) {
         case 1:

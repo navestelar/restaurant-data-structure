@@ -40,15 +40,14 @@ public class Table {
   @Override
   public String toString() {
     String result = "Table [number=" + number + ", capacity=" + capacity;
-
+    
     if (client != null) {
-      result += ", " + client;
+      result += ", client= " + client.getName() + "]";
     } else {
-      result += ", client= " + client;
+      result += ", client= " + client + "]";
     }
-
-    result += ", isOccupied=" + isOccupied() + "]";
 
     return result;
   }
+
 }

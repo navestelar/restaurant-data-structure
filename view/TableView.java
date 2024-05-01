@@ -14,24 +14,70 @@ public class TableView {
     System.out.println("------------------------");
     System.out.print("Enter an option: ");
   }
+
   public Integer readNumber() {
-    System.out.print("Table number: ");
-    return Integer.parseInt(System.console().readLine());
+    Integer input = null;
+    Boolean isInputInvalid = false;
+
+    do {
+      try {
+        System.out.print("Table number: ");
+        input = Integer.parseInt(System.console().readLine());
+        isInputInvalid = false;
+      } catch (NumberFormatException ex) {
+        System.out.println("Not a number, try again");
+        isInputInvalid = true;
+      }
+    } while (isInputInvalid);
+
+    return input;
   }
 
   public Integer readCapacity() {
-    System.out.print("Table capacity: ");
-    return Integer.parseInt(System.console().readLine());
+    Integer input = null;
+    Boolean isInputInvalid = false;
+
+    do {
+      try {
+        System.out.print("Table capacity: ");
+        input = Integer.parseInt(System.console().readLine());
+        isInputInvalid = false;
+      } catch (NumberFormatException ex) {
+        System.out.println("Not a number, try again");
+        isInputInvalid = true;
+      }
+    } while (isInputInvalid);
+
+    return input;
   }
 
   public Integer readClientId() {
-    System.out.print("Id of the client to allocate: ");
-    return Integer.parseInt(System.console().readLine());
+    Integer input = null;
+    Boolean isInputInvalid = false;
+
+    do {
+      try {
+        System.out.print("Id of the client to allocate: ");
+        input = Integer.parseInt(System.console().readLine());
+        isInputInvalid = false;
+      } catch (NumberFormatException ex) {
+        System.out.println("Not a number, try again");
+        isInputInvalid = true;
+      }
+    } while (isInputInvalid);
+
+    return input;
   }
 
   public String readSearchString() {
     System.out.print("Search table: ");
     return System.console().readLine();
+  }
+
+  public boolean readConfirmation() {
+    System.out.print("Are you sure?(Y/N): ");
+    String resposta = System.console().readLine().toUpperCase();
+    return resposta.equals("Y");
   }
 
   public void showMessage(String message) {

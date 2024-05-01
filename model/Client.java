@@ -58,7 +58,15 @@ public class Client {
 
   @Override
   public String toString() {
-    return "Client [id=" + id + ", cpf=" + cpf + ", name=" + name + ", phone=" + phone + ", email=" + email + ", table="
-        + table + ", peopleQuantity=" + peopleQuantity + "]";
+    String result = "Client [id=" + id + ", cpf=" + cpf + ", name=" + name + ", phone=" + phone + ", email=" + email;
+    
+    if (table != null) {
+      result += ", table= " + table.getNumber();
+    } else {
+      result += ", table= " + table;
+    }
+
+    result += ", peopleQuantity=" + peopleQuantity + "]";
+    return result;
   }
 }

@@ -51,13 +51,39 @@ public class ClientView {
   }
 
   public Integer readId() {
-    System.out.print("Id: ");
-    return Integer.parseInt(System.console().readLine());
+    Integer input = null;
+    Boolean isInputInvalid = false;
+    
+    do {
+      try {
+        System.out.print("Id: ");
+        input = Integer.parseInt(System.console().readLine());
+        isInputInvalid = false;
+      } catch(NumberFormatException ex) {
+        System.out.println("Not a number, try again");
+        isInputInvalid = true; 
+      }
+    } while(isInputInvalid);
+
+    return input;
   }
 
   public Integer readPeopleQuantity() {
-    System.out.print("People quantity: ");
-    return Integer.parseInt(System.console().readLine());
+    Integer input = null;
+    Boolean isInputInvalid = false;
+
+    do {
+      try {
+        System.out.print("People quantity: ");
+        input = Integer.parseInt(System.console().readLine());
+        isInputInvalid = false;
+      } catch (NumberFormatException ex) {
+        System.out.println("Not a number, try again");
+        isInputInvalid = true;
+      }
+    } while (isInputInvalid);
+
+    return input;
   }
 
   public boolean readConfirmation() {

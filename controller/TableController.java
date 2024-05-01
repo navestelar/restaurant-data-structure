@@ -28,11 +28,22 @@ public class TableController {
   }
 
   public void start() {
-    Integer option;
+    Integer option = null;
 
     do {
       view.showMenu();
-      option = Integer.parseInt(System.console().readLine());
+      Boolean isOptionInvalid = false;
+
+      do {
+        try {
+          System.out.print("Option: ");
+          option = Integer.parseInt(System.console().readLine());
+          isOptionInvalid = false;
+        } catch (NumberFormatException ex) {
+          System.out.println("Not a number, try again");
+          isOptionInvalid = true;
+        }
+      } while (isOptionInvalid);
 
       switch (option) {
         case 1:
@@ -88,13 +99,25 @@ public class TableController {
 
       if (table != null) {
         if (table.canOccupate(client.getPeopleQuantity())) {
+          if (client.getTable() != null) {
+            view.showMessage("Change the client table? ");
+            if (view.readConfirmation()) {
+              client.getTable().setClient(null);
+              client.setTable(table);
+              table.setClient(client);
+              view.showMessage("Client reallocated!");
+              return true;
+            }
+            return false;
+          }
+
           table.setClient(client);
           client.setTable(table);
           view.showMessage("Client allocated!");
           return true;
         }
 
-        view.showMessage("Table already occupied!");
+        view.showMessage("Table already occupied or table capacity exceeded!");
       }
     }
 
@@ -121,7 +144,7 @@ public class TableController {
   }
 
   private void seeOccupiedAndVacatedTables() {
-    getTablesStatus().showList();
+    view.showMessage(getTablesStatus().toStringWithKey());
   }
 
   public HashMapLinked<String, DoublyLinkedList<Table>> getTablesStatus() {
@@ -152,7 +175,17 @@ public class TableController {
     Table table = showTable(number);
 
     if (table != null) {
-      table.setCapacity(view.readCapacity());
+      Integer capacity = view.readCapacity();
+      
+      System.out.println("AAAAAAAAAAAA: " + table.isOccupied());
+      System.out.println("BBBBBBBBBBBBBB: " + table.getClient().getPeopleQuantity());
+      System.out.println("CCCCCCCCCCCCC: " + capacity);
+      if ((table.isOccupied()) && (capacity < table.getClient().getPeopleQuantity())) {
+        view.showMessage("You can't change the capacity of a table for a number lower than the client people number!");
+      } else {
+        table.setCapacity(capacity);
+        view.showMessage("Table capacity changed!");
+      }
     }
   }
 
@@ -161,7 +194,7 @@ public class TableController {
   }
 
   public void listTables() {
-    tableList.showList();
+    view.showMessage(tableList.toString());
   }
 
   private void searchTable() {

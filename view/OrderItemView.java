@@ -25,8 +25,21 @@ public class OrderItemView {
   }
 
   public Integer readQuantity() {
-    System.out.print("Quantity: ");
-    return Integer.parseInt(System.console().readLine());
+    Integer input = null;
+    Boolean isInputInvalid = false;
+
+    do {
+      try {
+        System.out.print("Quantity: ");
+        input = Integer.parseInt(System.console().readLine());
+        isInputInvalid = false;
+      } catch (NumberFormatException ex) {
+        System.out.println("Not a number, try again");
+        isInputInvalid = true;
+      }
+    } while (isInputInvalid);
+
+    return input;
   }
 
   public String readProductName() {
