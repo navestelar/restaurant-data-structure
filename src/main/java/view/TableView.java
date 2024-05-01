@@ -12,7 +12,6 @@ public class TableView {
     System.out.println("6 - List Tables");
     System.out.println("0 - Exit");
     System.out.println("------------------------");
-    System.out.print("Enter an option: ");
   }
 
   public Integer readNumber() {

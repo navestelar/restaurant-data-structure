@@ -7,7 +7,7 @@ import view.ClientView;
 public class ClientController {
   private ClientView view = new ClientView();
   private HashMapLinked<String, Client> clientList = new HashMapLinked<String, Client>();
-  private Integer currentId = 0;
+  private Integer currentId = 1;
 
   public ClientController() {
   }
@@ -21,7 +21,7 @@ public class ClientController {
 
       do {
         try {
-          System.out.print("Option: ");
+          System.out.print("Enter an option: ");
           option = Integer.parseInt(System.console().readLine());
           isOptionInvalid = false;
         } catch (NumberFormatException ex) {
@@ -97,10 +97,21 @@ public class ClientController {
     view.showMessage("Client to update: ");
     Client client = showClient(id);
 
-    Integer option;
+    Integer option = null;
     do {
       view.showMenuUpdate();
-      option = Integer.parseInt(System.console().readLine());
+      Boolean isOptionInvalid = false;
+
+      do {
+        try {
+          System.out.print("Enter an option: ");
+          option = Integer.parseInt(System.console().readLine());
+          isOptionInvalid = false;
+        } catch (NumberFormatException ex) {
+          System.out.println("Not a number, try again");
+          isOptionInvalid = true;
+        }
+      } while (isOptionInvalid);
 
       switch (option) {
         case 1:

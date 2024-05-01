@@ -6,7 +6,7 @@ import model.EmployeeRoles;
 
 public class EmployeeController {
   private HashMapLinked<String, Employee> employeeList = new HashMapLinked<String, Employee>();
-  private Integer currentId = 0;
+  private Integer currentId = 1;
 
   public EmployeeController() {
     employeeList.put("12345678901", new Employee(0, "12345678901", "Joan", "63995678901", "joan@restaurant.com", EmployeeRoles.WAITER, "07:30", "12:40-13:20", "17:00"));

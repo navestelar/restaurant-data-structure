@@ -11,7 +11,6 @@ public class OrderView {
     System.out.println("5 - List Orders");
     System.out.println("0 - Exit");
     System.out.println("------------------------");
-    System.out.print("Enter an option: ");
   }
 
   public void showMenuUpdate() {
@@ -22,7 +21,6 @@ public class OrderView {
     System.out.println("3 - Order Items");
     System.out.println("0 - Update Order");
     System.out.println("------------------------");
-    System.out.print("Choose the information: ");
   }
 
   public Integer readTableNumber() {

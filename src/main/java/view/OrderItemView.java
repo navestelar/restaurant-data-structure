@@ -11,7 +11,6 @@ public class OrderItemView {
     System.out.println("5 - List Orders Items");
     System.out.println("0 - Exit");
     System.out.println("------------------------");
-    System.out.print("Enter an option: ");
   }
 
   public void showMenuUpdate() {
@@ -21,7 +20,6 @@ public class OrderItemView {
     System.out.println("2 - Quantity");
     System.out.println("0 - Update Order Item");
     System.out.println("------------------------");
-    System.out.print("Choose the information: ");
   }
 
   public Integer readQuantity() {

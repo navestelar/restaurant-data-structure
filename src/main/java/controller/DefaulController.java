@@ -26,7 +26,7 @@ public class DefaulController {
 
       do {
         try {
-          System.out.print("Option: ");
+          System.out.print("Enter an option: ");
           option = Integer.parseInt(System.console().readLine());
           isOptionInvalid = false;
         } catch (NumberFormatException ex) {

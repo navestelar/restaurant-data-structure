@@ -9,7 +9,6 @@ public class DefaultView {
     System.out.println("3 - Table");
     System.out.println("0 - Exit");
     System.out.println("------------------------");
-    System.out.print("Enter an option: ");
   }
 
   public void showMessage(String message) {

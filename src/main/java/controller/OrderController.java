@@ -12,7 +12,7 @@ public class OrderController {
   private OrderItemController orderItemController = new OrderItemController();
   private TableController tableController;
   private EmployeeController employeeController;
-  private Integer currentId = 0;
+  private Integer currentId = 1;
 
   public OrderController(TableController tableController, EmployeeController employeeController) {
     this.tableController = tableController;
@@ -28,7 +28,7 @@ public class OrderController {
 
       do {
         try {
-          System.out.print("Option: ");
+          System.out.print("Enter an option: ");
           option = Integer.parseInt(System.console().readLine());
           isOptionInvalid = false;
         } catch (NumberFormatException ex) {
@@ -93,10 +93,21 @@ public class OrderController {
       return;
     }
 
-    Integer option;
+    Integer option = null;
     do {
       view.showMenuUpdate();
-      option = Integer.parseInt(System.console().readLine());
+      Boolean isOptionInvalid = false;
+
+      do {
+        try {
+          System.out.print("Enter an option: ");
+          option = Integer.parseInt(System.console().readLine());
+          isOptionInvalid = false;
+        } catch (NumberFormatException ex) {
+          System.out.println("Not a number, try again");
+          isOptionInvalid = true;
+        }
+      } while (isOptionInvalid);
 
       switch (option) {
         case 1:

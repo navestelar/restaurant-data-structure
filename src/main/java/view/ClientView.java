@@ -11,7 +11,6 @@ public class ClientView {
     System.out.println("5 - List Clients");
     System.out.println("0 - Exit");
     System.out.println("------------------------");
-    System.out.print("Enter an option: ");
   }
 
   public void showMenuUpdate() {
@@ -22,7 +21,6 @@ public class ClientView {
     System.out.println("3 - Email");
     System.out.println("0 - Update Client");
     System.out.println("------------------------");
-    System.out.print("Choose the information: ");
   }
 
   public String readSearchString() {
