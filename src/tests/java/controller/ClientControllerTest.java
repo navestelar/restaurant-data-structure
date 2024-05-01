@@ -1,17 +1,9 @@
-package src.tests.java.controller;
+package controller;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.TestInstance;
+import org.junit.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import src.main.java.controller.ClientController;
-import src.main.java.data_structure.HashMapLinked;
-import src.main.java.model.Client;
-import src.main.java.view.ClientView;
-
 import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
